@@ -1,13 +1,19 @@
+require 'pstore'
 require_relative "persons"
 # require 'geocoder'
 NUM_PEOPLE = 10
 array = []
 i = 0
 data_file = PStore.new('database.pstore')
-for i in (0..NUM_PEOPLE) do
-  array << Woman.new
-  # array << 
+data_file.transaction do
+  array = data_file[:array]
 end
+
+# puts array
+# for i in (0..NUM_PEOPLE) do
+#   array << Woman.new
+#   # array << 
+# end
 
 my_location = nil
 puts "What location are you looking for?"

@@ -1,10 +1,12 @@
 require 'geocoder'
 require 'faker'
+require 'haversine'
 
 class Person
-  attr_accessor :location
+  attr_accessor :location, :location_address
   def initialize
     @location = [Faker::Address.latitude , Faker::Address.longitude]
+    @location_address = nil
     self.class.all << self
   end
   @people = []
@@ -29,7 +31,7 @@ class Woman < Person
   attr_accessor :name, :gender
   def initialize
     super
-    @name = "#{Faker::Name.female_first_name}" #{Faker::Name.last_name}"
+    @name = "#{Faker::Name.female_first_name} #{Faker::Name.last_name}"
     @gender = "Female"
     self.class.all << self
   end
