@@ -3,10 +3,10 @@ require 'faker'
 require 'haversine'
 
 class Person
-  attr_accessor :location, :location_address
+  attr_accessor :location, :location_name
   def initialize
     @location = [Faker::Address.latitude , Faker::Address.longitude]
-    @location_address = nil
+    @location_name = nil
     self.class.all << self
   end
   @people = []
