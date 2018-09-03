@@ -1,6 +1,5 @@
 require 'geocoder'
 require 'faker'
-require 'haversine'
 
 class Person
   attr_accessor :location, :location_name
@@ -18,7 +17,7 @@ class Person
     end
     
     def count
-      @people.cound
+      @people.count
     end
 
     def find_distance(location1, location2)
@@ -46,3 +45,24 @@ class Woman < Person
     end
   end
 end
+
+class Men < Person
+  attr_accessor :name, :gender
+  def initialize
+    super
+    @name = "#{Faker::Name.male_first_name} #{Faker::Name.last_name}"
+    @gender = "Male"
+    self.class.all << self
+  end
+  @men = []
+  class << self
+    def all
+      @men
+    end
+
+    def count
+      @men.count
+    end
+  end
+end
+
